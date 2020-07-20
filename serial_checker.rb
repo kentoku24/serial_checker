@@ -13,15 +13,34 @@ USBSERIAL_NAME = "/dev/tty.usbserial-AC00V4M9" #DSD箱なし
 
 puts "起動中..."
 
+
+
+class String
+	def mb_ljust(width, padding=' ')
+		output_width = each_char.map{|c| c.bytesize == 1 ? 1 : 2}.reduce(0, &:+)
+		padding_size = [0, width - output_width].max
+		self + padding * padding_size
+	end
+end
+
 #todo 繋げなかった場合のエラーメッセージとか出す
 begin
-ser = SerialPort.new(USBSERIAL_NAME, 9600, 8, 1, SerialPort::NONE)
+	ser = SerialPort.new(USBSERIAL_NAME, 9600, 8, 1, SerialPort::NONE)
 rescue Errno::ENOENT => e
-	puts "\n\n***************************************************************"
-	puts "****** %30s が見つかりません ********" % USBSERIAL_NAME
-	puts "********  USBシリアル変換ケーブルを確認してください ***********"
-	puts "***************************************************************\n\n"
-	throw e
+	puts "\n\n*******************************************************************"
+	puts "****** %s *********" % "".mb_ljust(50, ' ')
+	puts "****** %s *********" % ("%s が見つかりません。" % USBSERIAL_NAME).mb_ljust(50, ' ')
+	puts "****** %s *********" % ""	.mb_ljust(50, ' ')
+	puts "****** %s *********" % "1. 接続されているUSBシリアル変換器の名前が".mb_ljust(50, ' ')
+	puts "****** %s *********" % ("  %s であること" % USBSERIAL_NAME).mb_ljust(50, ' ')
+	puts "****** %s *********" % "".mb_ljust(50, ' ')
+	puts "****** %s *********" % "2. USBシリアル変換ケーブルが接続されていること".mb_ljust(50, ' ')
+	puts "****** %s *********" % "".mb_ljust(50, ' ')
+	puts "****** %s *********" % "                       を確認してください。".mb_ljust(50, ' ')
+	puts "****** %s *********" % "".mb_ljust(50, ' ')
+	puts "*******************************************************************\n\n"
+	exit
+	#throw e
 end
 
 puts "準備完了"
