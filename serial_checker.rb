@@ -79,8 +79,8 @@ while true do
 			rpmR = values[11].to_i
 			aen = values[23].to_i
 			button = values[24].to_i
-			COC_raw = values[27].to_i
-			TDOC2_raw = values[28].to_i
+			#COC_raw = values[27].to_i
+			#TDOC2_raw = values[28].to_i
 
 			version = values[29].to_i
 
