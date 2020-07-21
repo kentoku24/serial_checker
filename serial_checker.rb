@@ -4,12 +4,16 @@ require 'rubygems'
 require 'serialport'
 require 'timeout'
 require 'pp'
+require 'socket'
 
 VERSION_SHOULDBE = 200717
 
 USBSERIAL_NAME = "/dev/tty.usbserial-AC00V4M9" #DSD箱なし
 #USBSERIAL_NAME = "/dev/tty.usbserial-AG0JO05J" #DSD箱入り
 #USBSERIAL_NAME = "/dev/tty.usbserial-DO00BDJU"
+
+USE_SOCKET = true #直接シリアルを使う代わりにTCPソケットを使う
+
 
 puts "起動中..."
 
@@ -23,25 +27,29 @@ class String
 	end
 end
 
-#todo 繋げなかった場合のエラーメッセージとか出す
-begin
-	ser = SerialPort.new(USBSERIAL_NAME, 9600, 8, 1, SerialPort::NONE)
-rescue Errno::ENOENT => e
-	puts "\n\n*******************************************************************"
-	puts "****** %s *********" % "".mb_ljust(50, ' ')
-	puts "****** %s *********" % ("%s が見つかりません。" % USBSERIAL_NAME).mb_ljust(50, ' ')
-	puts "****** %s *********" % ""	.mb_ljust(50, ' ')
-	puts "****** %s *********" % "1. 接続されているUSBシリアル変換器の名前が".mb_ljust(50, ' ')
-	puts "****** %s *********" % ("  %s であること" % USBSERIAL_NAME).mb_ljust(50, ' ')
-	puts "****** %s *********" % "".mb_ljust(50, ' ')
-	puts "****** %s *********" % "2. USBシリアル変換ケーブルが接続されていること".mb_ljust(50, ' ')
-	puts "****** %s *********" % "".mb_ljust(50, ' ')
-	puts "****** %s *********" % "                       を確認してください。".mb_ljust(50, ' ')
-	puts "****** %s *********" % "".mb_ljust(50, ' ')
-	puts "*******************************************************************\n\n"
-	exit
-	#throw e
-end
+if USE_SOCKET #socket経由で繋ぐ場合のモード
+	ser = TCPSocket.open("localhost", 1234)
+else #直接シリアルを繋ぐ場合のモード
+	begin
+		ser = SerialPort.new(USBSERIAL_NAME, 9600, 8, 1, SerialPort::NONE)
+	rescue Errno::ENOENT => e
+		puts "\n\n*******************************************************************"
+		puts "****** %s *********" % "".mb_ljust(50, ' ')
+		puts "****** %s *********" % ("%s が見つかりません。" % USBSERIAL_NAME).mb_ljust(50, ' ')
+		puts "****** %s *********" % ""	.mb_ljust(50, ' ')
+		puts "****** %s *********" % "1. 接続されているUSBシリアル変換器の名前が".mb_ljust(50, ' ')
+		puts "****** %s *********" % ("  %s であること" % USBSERIAL_NAME).mb_ljust(50, ' ')
+		puts "****** %s *********" % "".mb_ljust(50, ' ')
+		puts "****** %s *********" % "2. USBシリアル変換ケーブルが接続されていること".mb_ljust(50, ' ')
+		puts "****** %s *********" % "".mb_ljust(50, ' ')
+		puts "****** %s *********" % "                       を確認してください。".mb_ljust(50, ' ')
+		puts "****** %s *********" % "".mb_ljust(50, ' ')
+		puts "*******************************************************************\n\n"
+		exit
+		#throw e
+	end
+
+end 
 
 puts "準備完了"
 
