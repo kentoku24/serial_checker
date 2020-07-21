@@ -1,10 +1,8 @@
 
 
 require 'rubygems'
-require 'serialport'
 require 'timeout'
 require 'pp'
-require 'socket'
 
 VERSION_SHOULDBE = 200717
 
@@ -28,8 +26,10 @@ class String
 end
 
 if USE_SOCKET #socket経由で繋ぐ場合のモード
+	require 'socket'
 	ser = TCPSocket.open("localhost", 1234)
 else #直接シリアルを繋ぐ場合のモード
+	require 'serialport'
 	begin
 		ser = SerialPort.new(USBSERIAL_NAME, 9600, 8, 1, SerialPort::NONE)
 	rescue Errno::ENOENT => e
