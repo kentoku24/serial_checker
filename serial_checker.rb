@@ -4,7 +4,7 @@ require 'rubygems'
 require 'timeout'
 require 'pp'
 
-VERSION_SHOULDBE = 200717
+VERSION_SHOULDBE = 200722
 
 USBSERIAL_NAME = "/dev/tty.usbserial-AC00V4M9" #DSD箱なし
 #USBSERIAL_NAME = "/dev/tty.usbserial-AG0JO05J" #DSD箱入り
