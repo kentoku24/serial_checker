@@ -12,6 +12,7 @@ USBSERIAL_NAME = "/dev/tty.usbserial-AC00V4M9" #DSD箱なし
 
 USE_SOCKET = true #直接シリアルを使う代わりにTCPソケットを使う
 
+CHECK_ALL = true #バージョン番号以外もすべて確認する
 
 puts "起動中..."
 
@@ -86,20 +87,23 @@ while true do
 
 			error_message = ""
 
-			error_message += "モータL温度:%d 20〜40度ではない, " % motorL if motorL < 20 or 40 < motorL
-			error_message += "モータR温度:%d 20〜40度ではない, " % motorR if motorR < 20 or 40 < motorR
-			error_message += "ヒータ温度:%d 20〜40度ではない, " % heater if heater < 20 or 40 < heater
-			error_message += "バッテリ温度:%d 20〜40度ではない, " % batt if batt < 20 or 40 < batt
-			error_message += "バージョン:%d %d であるべき, " % [version, VERSION_SHOULDBE] if version != VERSION_SHOULDBE
+			if CHECK_ALL
+				error_message += "モータL温度:%d 20〜40度ではない, " % motorL if motorL < 20 or 40 < motorL
+				error_message += "モータR温度:%d 20〜40度ではない, " % motorR if motorR < 20 or 40 < motorR
+				error_message += "ヒータ温度:%d 20〜40度ではない, " % heater if heater < 20 or 40 < heater
+				error_message += "バッテリ温度:%d 20〜40度ではない, " % batt if batt < 20 or 40 < batt
 
-			if sensorL1 > 0 or sensorR1 > 0 or sensorL2 > 0 or sensorR2 > 0
-				error_message += "センサ L1:%d R1:%d L2:%d R2:%d, " % [sensorL1, sensorR1, sensorL2, sensorR2]
+				if sensorL1 > 0 or sensorR1 > 0 or sensorL2 > 0 or sensorR2 > 0
+					error_message += "センサ L1:%d R1:%d L2:%d R2:%d, " % [sensorL1, sensorR1, sensorL2, sensorR2]
+				end
+				error_message += "回転数 L:%4d R:%4d, " % [rpmL, rpmR] if rpmL > 5 or rpmR > 5
 			end
-			error_message += "回転数 L:%4d R:%4d, " % [rpmL, rpmR] if rpmL > 5 or rpmR > 5
+
+			error_message += "バージョン:%d %d であるべき, " % [version, VERSION_SHOULDBE] if version != VERSION_SHOULDBE
 
 
 			if error_message == ""
-				puts "OK %s" % line.chomp
+				puts "OK %d\n\n" % line.chomp
 			else
 				puts "NG %s" % error_message
 			end
