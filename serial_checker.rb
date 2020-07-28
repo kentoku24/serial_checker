@@ -103,7 +103,8 @@ while true do
 
 
 			if error_message == ""
-				puts "OK %d\n\n" % line.chomp
+				message = CHECK_ALL ? "" : "バージョン番号以外は確認していません"
+				puts "OK %s\n %s\n" % [message ,line.chomp]
 			else
 				puts "NG %s" % error_message
 			end
