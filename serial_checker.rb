@@ -118,7 +118,7 @@ while true do
 
 
 	rescue Timeout::Error
-		puts "シリアル線信号なし"
+		puts "シリアル線信号なし %s" % Time.now
 		line = ""
 	rescue ArgumentError, TypeError, Encoding::CompatibilityError => e
 		puts "不完全なデータ"
