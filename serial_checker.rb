@@ -120,7 +120,7 @@ while true do
 	rescue Timeout::Error
 		puts "シリアル線信号なし"
 		line = ""
-	rescue ArgumentError, TypeError => e
+	rescue ArgumentError, TypeError, Encoding::CompatibilityError => e
 		puts "不完全なデータ"
 		line = ""
 	end
