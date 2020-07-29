@@ -34,7 +34,7 @@ if USE_SOCKET #socket経由で繋ぐ場合のモード
 	rescue Errno::ECONNREFUSED => e
 		puts "\n\n*******************************************************************"
 		puts "****** %s *********" % "".mb_ljust(50, ' ')
-		puts "****** %s *********" % ("localhost:1234 のソケットに接続できません。"
+		puts "****** %s *********" % "localhost:1234 のソケットに接続できません。"
 		puts "****** %s *********" % ""	.mb_ljust(50, ' ')
 		puts "****** %s *********" % "1. ServerBridgeXが起動していること".mb_ljust(50, ' ')
 		puts "****** %s *********" % "2. ServerBridgeXで ▶ ボタンが押されていること".mb_ljust(50, ' ')
