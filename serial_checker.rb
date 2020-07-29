@@ -28,7 +28,22 @@ end
 
 if USE_SOCKET #socket経由で繋ぐ場合のモード
 	require 'socket'
-	ser = TCPSocket.open("localhost", 1234)
+
+	begin
+		ser = TCPSocket.open("localhost", 1234)
+	rescue Errno::ECONNREFUSED => e
+		puts "\n\n*******************************************************************"
+		puts "****** %s *********" % "".mb_ljust(50, ' ')
+		puts "****** %s *********" % ("localhost:1234 のソケットに接続できません。"
+		puts "****** %s *********" % ""	.mb_ljust(50, ' ')
+		puts "****** %s *********" % "1. ServerBridgeXが起動していること".mb_ljust(50, ' ')
+		puts "****** %s *********" % "2. ServerBridgeXで ▶ ボタンが押されていること".mb_ljust(50, ' ')
+		puts "****** %s *********" % "".mb_ljust(50, ' ')
+		puts "****** %s *********" % "                       を確認してください。".mb_ljust(50, ' ')
+		puts "****** %s *********" % "".mb_ljust(50, ' ')
+		puts "*******************************************************************\n\n"
+		exit	
+	end
 else #直接シリアルを繋ぐ場合のモード
 	require 'serialport'
 	begin
