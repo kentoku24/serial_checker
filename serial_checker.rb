@@ -4,7 +4,7 @@ require 'rubygems'
 require 'timeout'
 require 'pp'
 
-VERSION_SHOULDBE = 200722
+VERSION_SHOULDBE = 200907
 
 USBSERIAL_NAME = "/dev/tty.usbserial-AC00V4M9" #DSD箱なし
 #USBSERIAL_NAME = "/dev/tty.usbserial-AG0JO05J" #DSD箱入り
@@ -12,7 +12,9 @@ USBSERIAL_NAME = "/dev/tty.usbserial-AC00V4M9" #DSD箱なし
 
 USE_SOCKET = true #直接シリアルを使う代わりにTCPソケットを使う
 
-CHECK_ALL = true #バージョン番号以外もすべて確認する
+
+#CHECK_ALL = true #バージョン番号以外もすべて確認する
+CHECK_ALL = false #バージョン番号以外もすべて確認する
 
 puts "起動中..."
 
