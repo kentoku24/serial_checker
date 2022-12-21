@@ -1,0 +1,102 @@
+$ history
+    1  apt install termux-api
+    2  apt update
+    3  ruby
+    4  pkg install ruby
+    5  ls /dev/tty*
+    6  pkg install termux-api libusb clang
+    7  termux-usb -l
+    8  termux-usb -l
+    9  termux-usb -l
+   10  termux-usb -r /dev/bus/usb/001/002
+   11  ruby
+   12  gem install serialport
+   13  apt install git
+   14  pwd
+   15  git clone https://github.com/kentoku24/serial_checker
+   16  ls
+   17  cd serial_checker/
+   18  ruby serial_checker.rb
+   19  termux-usb -l
+   20  vi serial_checker.rb
+   21  apt install vim
+   22  vi serial_checker.rb
+   23  ruby serial_checker.rb
+   24  termux-usb -r /dev/bus/usb/001/002
+   25  ruby serial_checker.rb
+   26  lsusv
+   27  lsusb
+   28  apt install busybox
+   29  lsusb
+   30  pkg install busybox
+   31  lsusb
+   32  pkg install busybox
+   33  lsusb
+   34  tsudo lsusb
+   35  termux-usb -e
+   36  termux-usb -help
+   37  termux-usb ls
+   38  termux-usb -e ls
+   39  termux-usb -e echo
+   40  termux-usb -r -e echo
+   41  ls
+   42  termux-usb -e ruby serial_checker.rb
+   43  termux-usb -
+   44  termux-usb -l
+   45  termux-usb -e /dev/bus/usb/001/002
+   46  termux-usb -re ruby serial_checker.rb
+   47  pkg install nodejs-lts python clang make openssh
+   48  npm install johnny-five-android-termux
+   49  pwd
+   50  ls
+   51  ls node_modules/
+   52  ls
+   53  npm install johnny-five-android-termux
+   54  npm fond
+   55  npm fund
+   56  nc
+   57  pkg install netcat
+   58  nc 10.0.1.150:1234
+   59  nc 10.0.1.150 1234
+   60  nc 10.0.1.150 1234
+   61  git
+   62  pwd
+   63  git pull
+   64  git pull
+   65  git checkout .
+   66  git pull
+   67  ruby serial_checker.rb
+   68  ruby serial_checker.rb
+   69  git pull
+   70  ruby serial_checker.rb
+   71  ls
+   72  git statu
+   73  git status
+   74  ls
+   75  rm -r node_modules
+   76  git checkout .
+   77  ls
+   78  git status
+   79  rm package-lock.json
+   80  git pull
+   81  serial_checker
+   82  serial.checker
+   83  "serial_checker"
+   84  ruby serial_checker.rb
+   85  ruby serial_checker.rb
+   86  ruby serial_checker.rb
+   87  lw
+   88  ls
+   89  git status
+   90  git pull
+   91  git pull
+   92  ls
+   93  vi serial_checker.rb
+   94  ruby serial_checker.rb
+   95  git status
+   96  vi serial_checker.rb
+   97  ruby serial_checker.rb
+   98  vi serial_checker.rb
+   99  ruby serial_checker.rb
+  100  vi serial_checker.rb
+  101  ruby serial_checker.rb
